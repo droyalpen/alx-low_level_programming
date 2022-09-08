@@ -1,4 +1,2 @@
-#include <unistd.h>
-/**
- * main - Entry point
- *
+#!/bin/bash
+#include <unistd.h> 
