@@ -2,10 +2,11 @@
 #include <time.h>
 #include <stdio.h>
 /**
- *  * main - Entry point
+ *  * main - entry point
  *   *
- *    * Return: Always 0
- *     */
+ *    * return: always 0
+ *    
+ *    */
 int main(void)
 {
 		int n;
