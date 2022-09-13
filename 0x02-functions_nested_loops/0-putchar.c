@@ -1,11 +1,9 @@
 #include "main.h"
-
 /**
  * mqin - entry point
  *
  * Return: nothing, return void
  * */
-
 int main (void)
 {
 	_putchar('_');
