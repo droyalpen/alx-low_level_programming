@@ -5,16 +5,13 @@
  *
  * Return: Always 0 (Success)
  * */
-int main (void)
-{ 
-	char alp[26] =
-		"abcdefghijklmnopqrstuvwxyz";
-	int i;
+void print_alphabet (void)
+{
+	int n;
 
-	for (i = 0; i<26; i++)
+	for (n = 'a'; n <= 'z'; n++)
 	{
-		putchar(alp[i]);
+		_putchar(n);
 	}
-	putchar('\n');
-	return (0);
+	_putchar('/n');
 }
