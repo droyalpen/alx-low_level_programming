@@ -1,10 +1,10 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * write a function that takes int parameters to 98
- * and updates it point to 98
- * @n: input
- * Return: n
+ * reset_to_98 - updates the value of n to 98
+ * @n: integer pointer to a variable to be updated
+ *
+ * Return: nothing
  */
 
 void reset_to_98(int *n)
