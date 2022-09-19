@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "main.h"
+#include "main.c"
 
 /**
  * write a function that takes int parameters to 98
@@ -11,4 +12,4 @@
 void reset_to_98(int *n)
 {
 	*n = 98;
-} 
+}
