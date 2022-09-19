@@ -1,6 +1,4 @@
 #include <stdio.h>
-#include "main.h"
-#include "main.c"
 
 /**
  * write a function that takes int parameters to 98
