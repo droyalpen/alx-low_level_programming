@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _strncpy - Copies at most an inputted number
+ * _strncat - Copies at most an inputted number
  *            of bytes from string src into dest.
  * @dest: The buffer storing the string copy.
  * @src: The source string.
@@ -9,22 +9,22 @@
  *
  * Return: A pointer to the resulting string dest.
  */
+
 char *_strncat(char *dest, char *src, int n)
 {
-	int l, j;
+	int i, j;
+	i = j = 0; 
 
-	l = 0;
-	while (dest[l] != '\0')
+	while (*(dest + i))
+		i++;
+
+	while (j < n && *(src + j))
 	{
-	l++;
+		*(dest + i) = *(src + j);
+		i++;
+		j++;
 	}
-	for (j = 0; j < n; j++)
-	{
-		dest[l + j] = src[j];
-		if (src[j] == '\0')
-		{
-		j = n;
-		}
-	}
+	if (j < n)
+		*(dest + i) = *(src + j);
 	return (dest);
 }
