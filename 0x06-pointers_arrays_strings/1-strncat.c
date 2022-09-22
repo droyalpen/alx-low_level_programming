@@ -9,19 +9,22 @@
  *
  * Return: A pointer to the resulting string dest.
  */
-char *_strncpy(char *dest, char *src, int n)
+char *_strncat(char *dest, char *src, int n)
 {
-	int index = 0, dest_len = 0;
+	int l, j;
 
-
-	while (src[index++])
-		src_len++;
-
-	for (index = 0; src[index] && index < n; index++)
-		dest[index] = src[index];
-
-	for (index = src_len; index < n; index++)
-		dest[index] = '\0';
-
+	l = 0;
+	while (dest[l] != '\0')
+	{
+	l++;
+	}
+	for (j = 0; j < n; j++)
+	{
+		dest[l + j] = src[j];
+		if (src[j] == '\0')
+		{
+		j = n;
+		}
+	}
 	return (dest);
 }
