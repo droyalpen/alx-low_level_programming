@@ -13,33 +13,41 @@ char *str_cpy(char *dest, char *src);
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *tyson;
+	dog_t *new_name;
+	char *copy_name, *copy_owner;
+	unsigned int x, name_len = 0, owner_len = 0;
 
-	if (name == NULL || age < 0  || owner == NULL)
+	new_name = malloc(sizeof(dog_t));
+	if (name == NULL)
 		return (NULL);
-
-	tyson = malloc(sizeof(dog_t));
-	if (tyson == NULL)
-		return (NULL);
-
-	tyson->name = malloc(sizeof(char) * (_strlen(name) + 1));
-	if (tyson->name == NULL)
+	if (name == NULL || age <= 0 || owner == NULL)
 	{
-		free(tyson);
+		free(new_name);
 		return (NULL);
 	}
 
-	tyson->owner = malloc(sizeof(char) * (strlen(ownwer) + 1));
-	if (tyson->owner == NULL)
-	{
-		free(tyson->name);
-		free(tyson);
+	for (x = 0; name[x] != '\0'; x++)
+		name_len++;
+
+	for (x = 0; owner[x] != '\0'; x++)
+		owner_len++;
+
+	copy_name = malloc(sizeof(char) * (name_len + 1));
+	if (copy_name == NULL)
 		return (NULL);
-	}
 
-	tyson->name = _strcopy(tyson->name, name);
-	tyson->age = age;
-	tyson->owner = _strcopy(tyson->owner, owner);
+	copy_owner = malloc(sizeof(char) * (owner_len + 1));
+	if (copy_owner == NULL)
+		return (NULL);
 
-	return (tyson);
+	for (x = 0; x <= name_len; x++)
+		copy_name[x] = name[x];
+
+	for (x = 0; x <= owner_len; x++)
+		copy_owner[x] = owner[x];
+
+	new_name->name = copy_name;
+	new_name->owner = copy_owner;
+	new_name->age = age;
+	return (new_name);
 }
