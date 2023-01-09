@@ -1,54 +1,52 @@
 #include "hash_tables.h"
-
 /**
- * hash_table_set - function that adds an element to hash table
- * @ht: hash table to update
+ * hash_table_set - creates a new node in the hashtable
+ * @ht: pointer to the hashtable
  * @key: key
- * @value: value of key
- * Return: updated table
+ * @value: value to place in the node
+ * Return: 1  in success 0 otherwise
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int idx = 0;
-	char *temp_val = NULL;
-	hash_node_t *temp = NULL;
-	hash_node_t *new = NULL;
+	hash_node_t *new_node = malloc(sizeof(hash_node_t));
+	unsigned long int haidx;
+	hash_node_t *temp;
 
-	if (ht == NULL || ht->array == NULL || value == NULL)
+	if (ht == NULL || key == '\0' || *key == '\0')
 		return (0);
-
-	if (strlen(key) == 0 || key == NULL)
+	if (new_node == NULL)
 		return (0);
-	temp_val = strdup(value);
-	if (temp_val == NULL)
-		return (0);
-	idx = key_index((unsigned char *)key, ht->size);
-
-	/* Collision checker */
-	temp = ht->array[idx];
-	while (temp)
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+	haidx = key_index((unsigned char *)key, ht->size);
+	if (ht->array[haidx] != NULL)
 	{
-		if (strcmp(temp->key, key) == 0)
+		temp = ht->array[haidx];
+		while (temp != NULL)
+		{
+			if (strcmp(temp->key, new_node->key) == 0)
+				break;
+			temp = temp->next;
+		}
+		if (temp == NULL)
+		{
+			new_node->next = ht->array[haidx];
+			ht->array[haidx] = new_node;
+		}
+		else
 		{
 			free(temp->value);
-			temp->value = temp_val;
-			temp->value = strdup(value);
-			free(temp_val);
-			return (1);
+			temp->value = strdup(new_node->value);
+			free(new_node->value);
+			free(new_node->key);
+			free(new_node);
 		}
-		temp = temp->next;	
 	}
-
-	/* If no collision, insert node */
-	new = malloc(sizeof(hash_node_t));
-	if (new == NULL)
+	else
 	{
-		free(new);
-		return (0);
+		new_node->next = NULL;
+		ht->array[haidx] = new_node;
 	}
-	new->key = strdup(key);
-	new->value = temp_val;
-	new->next = ht->array[idx];
-	ht->array[idx] = new;
 	return (1);
 }
+Footer
